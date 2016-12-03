@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class n_Frisbee : MonoBehaviour {
 
@@ -10,12 +11,14 @@ public class n_Frisbee : MonoBehaviour {
     [HideInInspector] public bool inTheHole = false;
 
     private Transform n_HolderTransform;
+    private GameObject n_Hole;
 
 
 	/* Functions ================================================================= */
 
     void Start() {
         n_HolderTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        n_Hole = GameObject.FindGameObjectWithTag("Hole");
     }
 
     void Update() {
@@ -30,6 +33,7 @@ public class n_Frisbee : MonoBehaviour {
 
                 if (inTheHole) {
                     Debug.Log("Win!");
+                    n_Hole.GetComponent<n_Hole>().Restart();
                 } else {
                     // Move camera to the new position
                     // plus the offset value
