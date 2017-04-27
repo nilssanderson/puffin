@@ -30,6 +30,7 @@ public class n_Frisbee : MonoBehaviour {
             if (_speed < n_StoppingDistance) {
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 GetComponent<n_Projectile>().n_IsMoving = false;
+                n_HolderTransform.GetComponent<n_Holder>().n_CanShoot = true;
 
                 if (inTheHole) {
                     Debug.Log("Win!");

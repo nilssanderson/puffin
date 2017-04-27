@@ -13,6 +13,9 @@ public class n_Holder : MonoBehaviour {
 
     public Transform n_ProjectilePrefab;
 
+    public bool n_CanShoot = true;
+    private Transform _projectile;
+
 
 	/* Functions ================================================================= */
 
@@ -37,11 +40,13 @@ public class n_Holder : MonoBehaviour {
         // Put this in your update function
         if (Input.GetButtonDown("Fire1")) {
 
-            // Instantiate the projectile at the position and rotation of this transform
-            Transform _projectile = (Transform)Instantiate(n_ProjectilePrefab, transform.position, transform.rotation);
-
-            // Add force to the cloned object in the object's forward direction
-            _projectile.GetComponent<n_Projectile>().AddForce();
+            if (n_CanShoot) {
+                // Instantiate the projectile at the position and rotation of this transform
+                _projectile = (Transform)Instantiate(n_ProjectilePrefab, transform.position, transform.rotation);
+            } else {
+                // Add force to the cloned object in the object's forward direction
+                _projectile.GetComponent<n_Projectile>().AddForce();
+            }
         }
     }
 
